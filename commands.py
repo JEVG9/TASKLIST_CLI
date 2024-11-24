@@ -29,6 +29,19 @@ def init():
             break
 
 @cli.command()
-@click.option('command',type=str, help="")
-def help():
-    ...
+@click.option('-h','--help','help_command',type=str,required=False, help="Shows a list of the commands or a full description of a command")
+def commands(help_command):
+    
+    ctx = click.get_current_context()
+    if not help_command:
+        click.echo("TL --> Commands list: ")
+        for cmd_name , cmd in cli.commands.items():
+            click.echo(f" - {cmd_name} : {cmd.short_help}")
+    
+    else:
+        if help_command in cli.commands:
+            cmd = cli.commands[help_command]
+            click.echo(f"TL --> Command - '{help_command}':")
+            click.echo(cmd.help)
+        else:
+            click.echo(f"TL --> Command '{help_command}'does not exist")
