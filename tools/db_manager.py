@@ -53,6 +53,5 @@ def change_passw(username:str,password:str,new_password):
         return False
     return True
 
-def get_file_names_in_foler():
-    ...
-
+def get_file_names_in_folder():
+    return [f.name for f in list_db_folder.iterdir() if f.is_file()]
