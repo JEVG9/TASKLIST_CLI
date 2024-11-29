@@ -7,6 +7,7 @@
 - Create and manage task lists.
 - Rename existing lists.
 - Delete lists and tasks.
+- Add, modify, and remove tasks in the lists.
 - View all available lists and tasks.
 - Interactive interface for handling commands directly.
 
@@ -39,37 +40,60 @@ To initialize the application, run:
 python cli.py init
 ```
 
-This will start an interactive session where you can manage your task lists. Type help_tl to see the available commands.
+This will start an interactive session where you can manage your task lists. Once initialized, you can enter the commands directly, without needing to type `python cli.py` before each command.
 
 ### Main Commands
-
-Note the next commands can be used with the prefix python cli.py so there is no need to add it.
-
 1. **Command help:**
    ```bash
    help_tl [command]
    ```
    Lists all commands or shows detailed help for a specific command.
 
-2. **Create a new list:**
+### List Commands
+1. **Create a new list:**
    ```bash
-   newlist <nombre_lista>
+   newlist <list_name>
    ```
 
-3. **View all lists:**
+2. **View all lists:**
    ```bash
    alllist
    ```
 
-4. **Rename a list:**
+3. **Rename a list:**
    ```bash
    chgusr <current_name> <new_name>
    ```
 
-5. **Delete a list:**
+4. **Delete a list:**
    ```bash
    delusr <list_name>
    ```
+
+### Task Management Commands
+1. **Add a task to a list:**
+   ```bash
+   addtask <task_name>
+   ```
+   Adds a task to the specified list. You need to specify the list name during the session.
+
+2. **View all tasks in a list:**
+   ```bash
+   alltasks <list_name>
+   ```
+   Displays all tasks in the specified list.
+
+3. **Rename a task in a list:**
+   ```bash
+   modtaskname <list_name> <task_name> <new_task_name>
+   ```
+   Renames a task in the specified list.
+
+4. **Delete a task from a list:**
+   ```bash
+   deltask <task_name>
+   ```
+   Removes a task from the specified list.
 
 ## Project Structure
 ```
@@ -83,5 +107,5 @@ CLIST/
 ├── requirements.txt     # Project dependencies.
 ```
 
-## Autor
+## Author
 Jesús Vega
