@@ -1,6 +1,6 @@
 import click
 import shlex
-from tools.commands import help_tl,newacc
+from tools.commands import help_tl,newacc,chgusr,delusr
 from tools.db_manager import  filechecker
 
 @click.group()
@@ -10,6 +10,8 @@ def cli():
 
 cli.add_command(help_tl)
 cli.add_command(newacc)
+cli.add_command(chgusr)
+cli.add_command(delusr)
 
 @cli.command(short_help="Start the interactive CLI session.")
 def init():
