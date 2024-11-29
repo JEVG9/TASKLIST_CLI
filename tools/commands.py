@@ -1,5 +1,5 @@
 import click
-from tools.db_manager import check_user,add_user
+from tools.db_manager import check_user,add_user,username_chg
 
 
 @click.command(short_help="Show help for a specific command or list all commands.")
@@ -37,23 +37,19 @@ def help_tl(ctx, command):
 
 @click.command(short_help="Creates a new account.")
 @click.argument('username', required=True)
-@click.argument('passw', required=True)
-def newacc(username, passw):
+def newacc(username):
     """
     Creates a new user account and adds it to the database.
 
-    This command allows the creation of a new user account by taking a username 
-    and a password as arguments. Before creating the account, it performs the 
-    following checks:
+    This command allows the creation of a new user account by taking only a username as an argument.
+    The function performs the following checks:
     
-    1. Ensures that neither the username nor the password is empty.
-    2. Validates that the password is at least 4 characters long.
-    3. Checks if the username already exists in the database.
+    1. Ensures that the username is not empty.
+    2. Checks if the username already exists in the database.
 
     If all the conditions are satisfied, the new account is added to the database file 
     as a JSON object containing:
       - "username": the unique username for the account.
-      - "passw": the user's password.
       - "TLS": an empty dictionary reserved for future use.
 
     If any condition is not met, the function displays an appropriate error message 
@@ -61,34 +57,32 @@ def newacc(username, passw):
 
     Parameters:
         username (str): The desired username for the account.
-        passw (str): The password for the account, which must be at least 4 characters long.
 
     Returns:
         None: This function does not return any value, but prints messages to the console
               indicating the result of the operation.
 
     Error Messages:
-        - If the username or password is empty, or if the password is too short:
-          "The account cannot be created. The username and/or password cannot be empty.
-           Also, the password must be at least 4 characters long."
+        - If the username is empty:
+          "The account cannot be created. The username cannot be empty."
         - If the username already exists in the database:
           "User '<username>' already exists. Try with another name."
 
     Success Message:
         - If the account is successfully created:
           "Account '<username>' created and added to the file."
+
+    Example Usage:
+        To create a new account:
+        `python cli.py newacc <username>`
     """
-    if not username.strip() or not passw.strip() or len(passw) < 4:
+    if not username.strip():
         click.echo(
-            "The account cannot be created. The username and/or password "
-            "cannot be empty. Also, the password must be at least 4 characters long."
+            "The account cannot be created. The username cannot be empty."
         )
         return
-
     new_account = {"username":username,
-                   "passw":passw,
                    "TLS":{}}
-    
     if check_user(new_account["username"]):
         click.echo(f"User {username} already exist, try with another name")
     else:
@@ -97,8 +91,13 @@ def newacc(username, passw):
 
 @click.command(short_help = "Changes the passw of the user.")
 @click.argument('username',required = True)
-def chgusr(username):
-    ...
+@click.argument('newusername',required = True)
+def chgusr(username,newusername):
+    if not newusername.split() or not username.split():
+        click.echo("The new username cannot be empty, ")
+    if check_user(username):
+        click.echo(f"Username changed from {username} to {newusername}")
+        username_chg(username,newusername)
     
 
 
