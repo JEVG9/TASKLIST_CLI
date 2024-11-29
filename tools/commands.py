@@ -1,5 +1,5 @@
 import click
-from tools.db_manager import check_list,add_list,listname_chg,del_list
+from tools.db_manager import check_list,add_list,listname_chg,del_list,lists_on_db
 
 
 @click.command(short_help="Show help for a specific command or list all commands.")
@@ -53,7 +53,13 @@ def newlist(listname):
 
 @click.command(short_help = "shows all list on db.")
 def alllist():
-    ...
+    lists = lists_on_db()
+    if lists:
+        click.echo("TL --> All lists on file:")
+        for listn in lists:
+            click.echo(f"> {listn}")
+    else:
+        click.echo("TL --> No lists on file")
 
 @click.command(short_help = "Changes the name of the list.")
 @click.argument('listname',required = True)
@@ -74,4 +80,26 @@ def delusr(listname):
             click.echo(f"TL --> Deleting account with all lists included.")
         else:
             click.echo(f"TL --> Account does not exist, nothing got deleted.")
+
+@click.command(short_help = "Adds a task on a list")
+@click.argument('taskname',required = True)
+def addtask(taskname:str):
+    ...
+
+@click.command(short_help = "Returns all task on a list")
+@click.argument('listname',required = True)
+def alltasks(listname:str):
+    ...
+
+@click.command(short_help = "change the name of a task on a list")
+@click.argument('listname',required = True)
+@click.argument('taskname',required = True)
+@click.argument('newtaskname',required = True)
+def modtaskname(listname:str,taskname:str,newtaskname:str):
+    ...
+
+@click.command(short_help = "Deletes a task on a list")
+@click.argument('taskname',required = True)
+def deltask(taskname:str):
+    ...
 

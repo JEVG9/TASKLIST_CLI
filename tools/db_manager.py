@@ -49,5 +49,7 @@ def del_list(listname:str)->None:
     with open(db_file, 'w') as jsonfile:
         json.dump(db,jsonfile,indent=4)
 
-def list_on_db()->None:
-    ...
+def lists_on_db():
+    with open(db_file, 'r') as jsonfile:
+        db = json.load(jsonfile)
+    return [entry["listname"] for entry in db if "listname" in entry]
