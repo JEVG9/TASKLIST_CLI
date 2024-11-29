@@ -23,19 +23,18 @@ def check_user(username:str):
         return True
     return False
 
-def add_user(username:str,password:str):
-    new_user = {"username":username,
-                "password":password}
+def add_user(newacc:dict):
     with open(db_file, 'r') as jsonfile:
         try:
             data = json.load(jsonfile)
         except json.JSONDecodeError:
             data = []
-    data.append(new_user)
+    data.append(newacc)
     with open(db_file, 'w') as jsonfile:
         json.dump(data,jsonfile,indent=4)
+        
 
-def change_passw(username:str,password:str,new_password):
+"""def change_passw(username:str,password:str,new_password):
     account = {"username":username,
                "password":password}
     account_mod = {"username":username,
@@ -55,3 +54,4 @@ def change_passw(username:str,password:str,new_password):
 
 def get_file_names_in_folder():
     return [f.name for f in list_db_folder.iterdir() if f.is_file()]
+"""
