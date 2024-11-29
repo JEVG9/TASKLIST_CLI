@@ -42,30 +42,33 @@ python cli.py init
 This will start an interactive session where you can manage your task lists. Type help_tl to see the available commands.
 
 ### Main Commands
+
+Note the next commands can be used with the prefix python cli.py so there is no need to add it.
+
 1. **Command help:**
    ```bash
-   python cli.py help_tl [command]
+   help_tl [command]
    ```
    Lists all commands or shows detailed help for a specific command.
 
 2. **Create a new list:**
    ```bash
-   python cli.py newlist <nombre_lista>
+   newlist <nombre_lista>
    ```
 
 3. **View all lists:**
    ```bash
-   python cli.py alllist
+   alllist
    ```
 
 4. **Rename a list:**
    ```bash
-   python cli.py chgusr <current_name> <new_name>
+   chgusr <current_name> <new_name>
    ```
 
 5. **Delete a list:**
    ```bash
-   python cli.py delusr <list_name>
+   delusr <list_name>
    ```
 
 ## Project Structure
