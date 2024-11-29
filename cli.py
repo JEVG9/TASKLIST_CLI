@@ -1,6 +1,6 @@
 import click
 import shlex
-from tools.commands import commands,help_tl,newacc
+from tools.commands import help_tl,newacc
 from tools.db_manager import  filechecker
 
 @click.group()
@@ -8,7 +8,6 @@ def cli():
     """Task List CLI - Manage your tasks interactively."""
     pass
 
-cli.add_command(commands)
 cli.add_command(help_tl)
 cli.add_command(newacc)
 
