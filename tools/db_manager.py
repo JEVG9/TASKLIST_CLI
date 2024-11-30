@@ -32,9 +32,9 @@ def add_list(newlist: dict) -> None:
 def listname_chg(listname: str, newlistname: str) -> None:
     with open(db_file, 'r') as jsonfile:
         db = json.load(jsonfile)
-    for user in db:
-        if user["listname"] == listname:
-            user["listname"] = newlistname
+    for lists in db:
+        if lists["listname"] == listname:
+            lists["listname"] = newlistname
             break
     with open(db_file, 'w') as jsonfile:
         json.dump(db, jsonfile, indent=4)
@@ -42,9 +42,9 @@ def listname_chg(listname: str, newlistname: str) -> None:
 def del_list(listname:str)->None:
     with open(db_file, 'r') as jsonfile:
         db=json.load(jsonfile)
-    for user in db:
-        if user["listname"] == listname:
-            db.remove(user)
+    for lists in db:
+        if lists["listname"] == listname:
+            db.remove(lists)
             break
     with open(db_file, 'w') as jsonfile:
         json.dump(db,jsonfile,indent=4)
@@ -53,3 +53,10 @@ def lists_on_db():
     with open(db_file, 'r') as jsonfile:
         db = json.load(jsonfile)
     return [entry["listname"] for entry in db if "listname" in entry]
+
+def add_task(listname:str,task:str):
+    with open(db_file, 'r') as jsonfile:
+        db=json.load(jsonfile)
+    for lists in db:
+        if lists["listname"]==listname:
+            lists["tasks"]...
