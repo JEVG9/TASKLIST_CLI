@@ -82,8 +82,9 @@ def delusr(listname):
             click.echo(f"TL --> Account does not exist, nothing got deleted.")
 
 @click.command(short_help = "Adds a task on a list")
+@click.argument('listname',required=True)
 @click.argument('taskname',required = True)
-def addtask(taskname:str):
+def addtask(listname:str,taskname:str):
     ...
 
 @click.command(short_help = "Returns all task on a list")
@@ -99,7 +100,8 @@ def modtaskname(listname:str,taskname:str,newtaskname:str):
     ...
 
 @click.command(short_help = "Deletes a task on a list")
+@click.argument('listname',required = True)
 @click.argument('taskname',required = True)
-def deltask(taskname:str):
+def deltask(listname:str,taskname:str):
     ...
 
