@@ -44,7 +44,7 @@ def newlist(listname):
         )
         return
     new_list = {"listname":listname,
-                   "Tasks":{}}
+                   "tasks":{}}
     if check_list(new_list["listname"]):
         click.echo(f"TL --> List {listname} already exist, try with another name")
     else:
