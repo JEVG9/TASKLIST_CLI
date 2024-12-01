@@ -136,3 +136,10 @@ def task_lst(list_type: str = "all") -> list:
         return None
     return [f"|{task['id']} | {task['description']} | {task['createdAt']} | {task['updatedAt']}|" for task in
             tasks_to_print]
+
+def task_names(dscrp:str):
+    with open(db_file, 'r') as jsonfile:
+        db = json.load(jsonfile)
+    if dscrp in [tasks["description"] for tasks in db]:
+        return True
+    return False
