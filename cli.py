@@ -1,6 +1,6 @@
 import click
 import shlex
-from tools.commands import help_tl,addt
+from tools.commands import *
 from tools.db_manager import  filechecker
 
 @click.group()
@@ -8,8 +8,13 @@ def cli():
     """Task List CLI - Manage your tasks interactively."""
     pass
 
-cli.add_command(help_tl)
+cli.add_command(htl)
 cli.add_command(addt)
+cli.add_command(modt)
+cli.add_command(delt)
+cli.add_command(stst)
+cli.add_command(lstt)
+
 
 @cli.command(short_help="Start the interactive CLI session.")
 def init():

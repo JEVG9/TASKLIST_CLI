@@ -45,7 +45,7 @@ This will start an interactive session where you can manage your task lists. Onc
 ### Main Commands
 1. **Command help:**
    ```bash
-   help_tl [command]
+   htl [command]
    ```
    Lists all commands or shows detailed help for a specific command.
 

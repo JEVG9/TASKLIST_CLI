@@ -130,7 +130,7 @@ def task_lst(list_type: str = "all") -> list:
         db = json.load(jsonfile)
     if list_type == "all":
         tasks_to_print = db
-    elif list_type in ["done", "todo", "in-progress"]:
+    elif list_type in ["done", "to-do", "in-progress"]:
         tasks_to_print = [task for task in db if task["status"] == list_type]
     else:
         return None
@@ -141,5 +141,17 @@ def task_names(dscrp:str):
     with open(db_file, 'r') as jsonfile:
         db = json.load(jsonfile)
     if dscrp in [tasks["description"] for tasks in db]:
+        return True
+    return False
+
+def lst_empty():
+    with open(db_file, 'r') as jsonfile:
+        db = json.load(jsonfile)
+    return False if len(db)>0 else True
+
+def task_exs(tid):
+    with open(db_file, 'r') as jsonfile:
+        db = json.load(jsonfile)
+    if tid in db:
         return True
     return False
