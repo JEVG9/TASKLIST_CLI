@@ -1,7 +1,6 @@
 import click
 from tools.db_manager import check_list,add_list,listname_chg,del_list,lists_on_db
 
-
 @click.command(short_help="Show help for a specific command or list all commands.")
 @click.argument('command', required=False)
 @click.pass_context
@@ -23,7 +22,6 @@ def help_tl(ctx, command):
           `python cli.py help_tl <command_name>`
     """
     cli = ctx.find_root().command
-
     if not command:
         click.echo("TL --> Available commands:")
         for cmd_name, cmd in cli.commands.items():
